@@ -1,0 +1,35 @@
+<div class="col-lg-12 col-12 vh-100 d-flex aling-items-center">
+    <div class="col-lg-3 col-8 mx-auto my-auto py-5" style="background-color: rgb(77, 77, 218); border-radius: 20px;">
+        <form [formGroup]="formulario" (ngSubmit)="login()">
+            <div class="col-lg-8 mx-auto col-10">
+                <mat-form-field class="example-form-field" class="w-100">
+                    <mat-label>Correo</mat-label>
+                    <input matInput type="text" formControlName="correo">
+                    @if (this.formulario.get('correo')?.value) {
+                        <button matSuffix matIconButton aria-label="Clear" type="button" (click)="this.formulario.get('correo')?.setValue('')">
+                        <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </mat-form-field>
+            </div>
+    
+            <div class="col-lg-8 mx-auto col-10">
+                <mat-form-field class="example-form-field" class="w-100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" formControlName="clave">
+                    @if (this.formulario.get('clave')?.value) {
+                        <button matSuffix matIconButton aria-label="Clear" type="button" (click)="this.formulario.get('clave')?.setValue('')">
+                        <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </mat-form-field>
+            </div>
+
+
+            <div class="col-lg-4 col-10 mx-auto d-flex justify-content-center">
+                <button matButton="tonal" type="submit" class="mx-auto">Ingresar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

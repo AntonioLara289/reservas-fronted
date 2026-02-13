@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Reservar espacio con capacidad de {{data.capacidad }} personas</h2>
+<mat-dialog-content>
+
+<div class="container"> 
+    <div class="row justify-content-center"> 
+
+        <form [formGroup]="formulario" (ngSubmit)="reservar()">
+
+            <div class="col-lg-12 row m-0"> 
+
+                <div class="col-lg-4"> 
+                    <mat-form-field class="w-100">
+                        <mat-label>Solicitante</mat-label>
+                        <input matInput type="text" minlength="3" formControlName="solicitante">
+                        @if(this.formulario.get('solicitante')?.hasError('required')){
+                            <mat-error>El solicitante es necesario</mat-error>
+                        }
+                        @if(this.formulario.get('solicitante')?.hasError('minlength')){
+                            <mat-error>Minimo 3 caracteres</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-lg-4">
+                    <mat-form-field class="w-100">
+                        <mat-label>Seleccione una fecha</mat-label>
+                        <input matInput [matDatepicker]="picker" [min]="minDate" formControlName="fecha" readonly> 
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        @if(this.formulario.get('fecha')?.hasError('required')){
+                            <mat-error>La fecha es necesaria</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-lg-4">
+                    <mat-form-field class="w-100">
+                        <mat-label>Selecciona una hora</mat-label>
+                        <input matInput [matTimepicker]="timePicker" formControlName="hora" readonly/>
+                        <mat-timepicker-toggle matSuffix [for]="timePicker"></mat-timepicker-toggle>
+                        <mat-timepicker #timePicker interval="60min"></mat-timepicker>
+                        @if(this.formulario.get('fecha')?.hasError('required')){
+                            <mat-error>La fecha es necesaria</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+                <mat-form-field class="w-100 p-1">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea 
+                    matInput 
+                    minlength="10" 
+                    rows="3" 
+                    placeholder="Proporcione una descripción para saber si es digno"
+                    formControlName="descripcion">
+                </textarea>
+                @if(this.formulario.get('descripcion')?.hasError('required')){
+                    <mat-error>Es necesario una descripción</mat-error>
+                }
+                @if(this.formulario.get('descripcion')?.hasError('minlength')){
+                    <mat-error>Minimo 10 caracteres</mat-error>
+                }
+                </mat-form-field>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton="outlined" mat-dialog-close color="warn">Cancelar</button>
+  <button matButton="filled" cdkFocusInitial (click)="reservar()">Reservas</button>
+</mat-dialog-actions>

@@ -1,0 +1,27 @@
+<div class="d-flex flex-wrap justify-content-end">
+
+    
+    
+    <button matButton="outlined" class="mx-2" (click)="abrirModalSolicitarFolio()">
+        <mat-icon>search</mat-icon>
+        Consultar Reservación
+    </button>
+
+    <button matButton="outlined" class="mx-2" [routerLink]="['menu/dashboard']">
+        <mat-icon>groups</mat-icon>
+        Espacios
+    </button>
+    
+    @if(isAdmin){
+
+        <button matButton="filled" class="mx-2" [routerLink]="['/menu/administracion-reservas']">
+            <mat-icon>managment</mat-icon>
+            Reservaciones
+        </button>
+    }
+    
+    <button matButton="elevated" (click)="logout()" class="mx-2">
+        <mat-icon>exit_to_app</mat-icon>
+        Salir
+    </button>
+</div>

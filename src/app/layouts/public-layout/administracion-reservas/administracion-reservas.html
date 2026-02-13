@@ -1,0 +1,45 @@
+@for (item of reservas; track $index) {
+      <div class="col-lg-8 mx-auto my-4">
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title>Folio: #{{item.id_reserva}}</mat-card-title>
+                    <div class="col-lg-1 ms-auto">
+                        {{item.reserva_str}}
+                    </div>
+                </mat-card-header>
+                <mat-card-content class="d-flex aling-items-center">
+                    <div class="col-lg-3 mt-2">                            
+                        Solicitante: {{ item.solicitante }}
+                    </div>
+                    <div class="col-lg-8 ms-2 mt-2">
+                        {{item.descripcion}}
+                    </div>
+                    <div class="col-lg-1">
+
+                        <button matIconButton [matMenuTriggerFor]="menu" class="mt-2">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="abrirModalEditar(item)" [disabled]="item.estatus != 1">
+                                <mat-icon>edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+                            <button mat-menu-item (click)="abrirModalCambiarEstatus(3, item.id_reserva)" [disabled]="item.estatus != 1">
+                                <mat-icon>close</mat-icon>
+                                <span>Rechazar</span>
+                            </button>
+                            <button mat-menu-item (click)="abrirModalCambiarEstatus(2, item.id_reserva)" [disabled]="item.estatus != 1">
+                                <mat-icon>check</mat-icon>
+                                <span>Aceptar</span>
+                            </button>
+                            <button mat-menu-item (click)="abrirModalCambiarEstatus(4, item.id_reserva)" [disabled]="item.estatus != 2">
+                                <mat-icon>check_box</mat-icon>
+                                <span>Liberar</span>
+                            </button>
+                        </mat-menu>
+
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+}
